@@ -21,7 +21,6 @@ def creation():
 def use(str1, str2, str3, str4, str5):
 
     #Prevents SQL injection attacks, rather than using hardcoded strings
-    c.execute('INSERT INTO Store VALUES (?, ?, ?, ?, ?)', (str1, str2, str3, str4, str5))
+    c.execute("INSERT INTO Store VALUES (?, ?, ?, ?, ?)", (str1, str2, str3, str4, str5))
+    conn.commit()
 
-setup()
-creation()
