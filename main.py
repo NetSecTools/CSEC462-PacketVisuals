@@ -1,12 +1,14 @@
 """"
 Zachary Anthony
-Basic Python Linux Packet Sniffer
+Python Linux Packet Sniffer
 Linux systems only -
 """
 
 import socket
 import sys
 from struct import *
+import sqlite3
+import init_db
 
 try:
     Link = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
@@ -25,13 +27,11 @@ while True:
     header_information = stream[0:20]
     header_information = unpack('!BBHHHBBH4s4s', header_information)
     #Protocol Used
-    protocol_used = header_information[6]
-
-    #if protocol_used ==
+    proto = str(header_information[6])
 
     #Src/Dest IP
-    src_IP = socket.inet_ntoa(header_information[8])
-    dest_IP = socket.inet_ntoa(header_information[9])
+    src_IP = str(socket.inet_ntoa(header_information[8]))
+    dest_IP = str(socket.inet_ntoa(header_information[9]))
 
 
     # Version Information
@@ -42,12 +42,19 @@ while True:
 
     #Port Information
     length = (x * 4)
-    Zelda = stream[length:length + 20]
+    length20 = length + 20
+    Zelda = stream[length:length20]
     port_info = unpack('!HHLLBBHHH', Zelda)
 
-    src_PT = port_info[0]
-    dest_PT = port_info[1]
+    src_PT = str(port_info[0])
+    dest_PT = str(port_info[1])
 
+    init_db.setup()
+    init_db.creation()
+    init_db.use(proto, src_IP, src_PT, dest_IP, dest_PT)
 
     #print 'Version : ' + str(vs_x) + ' IP Header Length : ' + str(x) + ' Protocol ' + str(protocol_used) + ' Source IP ' + str(src_IP) + ' Destination IP ' + str(dest_IP)
-    print 'Protocol: ' + str(protocol_used) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
+    print 'Protocol: ' + proto + ' Source IP/Port: ' + src_IP + '/' + src_PT + ' Destination IP/Port: ' + dest_IP + '/' + dest_PT
+
+
+
