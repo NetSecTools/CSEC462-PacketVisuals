@@ -15,12 +15,12 @@ def setup():
 
 def creation():
     c.execute('DROP TABLE IF EXISTS Store')
-    c.execute('CREATE TABLE Store (Protocol int, Src_IP varchar(15), Src_Port varchar(15), Dest_IP varchar(15), Dest_Port varchar(15))')
+    c.execute('CREATE TABLE Store (Src_MAC varchar(15), Dest_MAC varchar(15), Src_IP varchar(15), Src_Port varchar(15), Dest_IP varchar(15), Dest_Port varchar(15), Protocol int)')
     conn.commit()
 
-def use(str1, str2, str3, str4, str5):
+def use(str1, str2, str3, str4, str5, str6, str7):
 
     #Prevents SQL injection attacks, rather than using hardcoded strings
-    c.execute("INSERT INTO Store VALUES (?, ?, ?, ?, ?)", (str1, str2, str3, str4, str5))
+    c.execute("INSERT INTO Store VALUES (?, ?, ?, ?, ?, ?, ?)", (str1, str2, str3, str4, str5, str6, str7))
     conn.commit()
 
