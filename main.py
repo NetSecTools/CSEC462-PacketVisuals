@@ -9,9 +9,11 @@ import sys
 from struct import *
 import sqlite3
 import init_db
+import json
 
 init_db.setup()
 init_db.creation()
+count = 0
 
 tcp=6
 udp=17
@@ -43,6 +45,8 @@ try:
 
         if eproto == 8:
 
+            count += 1
+
             #header information
             header_information = stream[ethernet_legnth:ethernet_legnth+20]
             header_information = unpack('!BBHHHBBH4s4s', header_information)
@@ -68,20 +72,14 @@ try:
 
             src_PT = tcp_header[0]
             dest_PT = tcp_header[1]
-            init_db.use(src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto)
+            init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto)
 
             #elif proto == 17:
-
-
-
 
             #init_db.use(proto, src_IP, src_PT, dest_IP, dest_PT)
 
             #print 'Version : ' + str(vs_x) + ' IP Header Length : ' + str(x) + ' Protocol ' + str(protocol_used) + ' Source IP ' + str(src_IP) + ' Destination IP ' + str(dest_IP)
-            print 'Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
-
-
-
+            print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
 
 
 
