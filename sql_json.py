@@ -1,29 +1,23 @@
 import json
-import collections
-# !/bin/python
+from sqlobject import *
+
+
 
 import sqlite3
 
 
 
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
+def Main():
+    # This is an iterable, not a list
+    all_songs = Song.select().orderBy(Song.q.name)
 
-connection = sqlite3.connect("store.db")
-connection.row_factory = dict_factory
+    songs_as_dict = []
 
-cursor = connection.cursor()
+    for song in all_songs:
+        song_as_dict = {
+            'name' : song.name,
+            'artist' : song.artist,
+            'album' : song.album}
+        songs_as_dict.append(song_as_dict)
 
-cursor.execute("select Number, Src_MAC, Dest_MAC, Src_IP, Src_Port, Dest_IP, Dest_Port, Protocol from store")
-
-# fetch all or one we'll go for all.
-
-results = cursor.fetchall()
-st = "store.js"
-f = open(st, 'w')
-print >> f, results
-
-connection.close()
+    print simplejson.dumps(songs_as_dict)

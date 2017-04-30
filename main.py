@@ -11,6 +11,7 @@ import sqlite3
 import init_db
 import json
 
+
 init_db.setup()
 init_db.creation()
 count = 0
@@ -74,16 +75,12 @@ try:
             dest_PT = tcp_header[1]
             init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto)
 
-            #elif proto == 17:
-
-            #init_db.use(proto, src_IP, src_PT, dest_IP, dest_PT)
-
-            #print 'Version : ' + str(vs_x) + ' IP Header Length : ' + str(x) + ' Protocol ' + str(protocol_used) + ' Source IP ' + str(src_IP) + ' Destination IP ' + str(dest_IP)
-            print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
 
 
 
-            #init_db.use(proto, src_IP, src_PT, dest_IP, dest_PT)
+        #print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
+
+
 
 except KeyboardInterrupt:
     print 'Bye'
