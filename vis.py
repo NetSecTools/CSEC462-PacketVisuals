@@ -9,6 +9,7 @@ from bson import json_util
 import flask
 import csv
 from csv import DictReader
+import os
 
 
 def pretty_picture():
@@ -17,20 +18,9 @@ def pretty_picture():
     cursor = conn.cursor()
     cursor.execute("""Select src_IP, COUNT(src_IP) from store GROUP BY Src_IP""")
     rows = cursor.fetchall()
-    print rows
+    #print rows
+    #os.system("rm out.csv")
 
-    data_list = []
-    '''
-    for spot in rows:
-        data_dict = {
-            'name': spot[0],
-            'imports': spot[1]}
-        data_list.append(data_dict)
-    data_agg = json.dumps(data_list)
-    f = open('data.json', 'w')
-    print >> f , rows
-    f.close()
-    '''
     with open("out.csv", "wb") as csv_file:  # Python 2 version
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow([i[0] for i in cursor.description])  # write headers
@@ -51,18 +41,12 @@ def get_occurances():
         x.close()
         return a2
 
-    """
-    json_projects = []
-    for row in rows:
-        json_projects.append(row)
-    json_projects = json.dumps(json_projects, default=json_util.default)
-    conn.close()
-    print json_projects
-    f = open('data.json', 'w')
-    print >> f, json_projects
-    f.close()
-    """
-pretty_picture()
+def get_max_size():
+    conn = sqlite3.connect('store.db')
+    cursor = conn.cursor()
+    cursor.execute("Select COUNT(src_IP) AS ct from store GROUP BY src_IP ORDER BY COUNT(src_IP) DESC LIMIT 1")
+    size = cursor.fetchone()[0]
+    return size
 
 def test():
     conn = sqlite3.connect('store.db')
@@ -76,3 +60,5 @@ def test():
     print string
 
 #test()
+
+#pretty_picture()

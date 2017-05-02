@@ -10,6 +10,7 @@ from struct import *
 import sqlite3
 import init_db
 import json
+import os
 
 
 init_db.setup()
@@ -75,13 +76,13 @@ try:
             dest_PT = tcp_header[1]
             init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto)
 
-
-
-
-        #print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
+            print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
 
 
 
 except KeyboardInterrupt:
-    print 'Bye'
+    os.system("sudo python vis.py")
+    os.system("sudo python app.py")
+
+
 
