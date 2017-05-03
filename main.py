@@ -41,7 +41,8 @@ try:
 
         eheader = stream[:14]
         e = unpack('!6s6sh', eheader)
-        eproto = socket.ntohs(e[2])
+        #eproto = socket.ntohs(e[2])
+        eproto = 8
         dest_Mac= ethernet_format(stream[0:6])
         src_Mac = ethernet_format(stream[6:12])
 

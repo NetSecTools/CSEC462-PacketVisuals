@@ -27,9 +27,10 @@ def pretty_picture():
         cursor.execute("""Select src_IP, COUNT(src_IP) from store GROUP BY Src_IP""")
         rows = cursor.fetchall()
         csv_writer.writerows(rows)
+    #os.system("cp out.csv /project/")
 
 def get_Labels():
-    with open("out.csv") as f:
+    with open(os.path.join("out.csv")) as f:
         a1 = [row["Src_IP"] for row in DictReader(f)]
         f.close()
         return a1
@@ -61,4 +62,4 @@ def test():
 
 #test()
 
-#pretty_picture()
+pretty_picture()
