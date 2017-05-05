@@ -9,9 +9,16 @@
  <body>
   <div class="ct-chart ct-golden-section"></div>
   <div class="ctt-chart ct-golden-section"></div>
+  <div class="cttt-chart ct-golden-section"></div>
+  <div class="ctttt-chart ct-golden-section"></div>
+  <div class="cttttt-chart ct-golden-section"></div>
+
   <script>
 
-	$.get('/dataB', function(response){
+
+
+
+	$.get('/src_IP', function(response){
 		var info = {
 			labels: response.labels,
 			series: [response.values]
@@ -53,8 +60,186 @@
 			// that is resolving to our chart container element. The Second parameter
 			// is the actual data object.
 			new Chartist.Line('.ct-chart', data, options);
-			new Chartist.Bar('.ctt-chart', data, options);
 	});
+
+
+	$.get('/Dest_IP', function(response){
+		var info = {
+			labels: response.labels,
+			series: [response.values]
+		};
+
+		var options = {
+		  seriesBarDistance: 15
+		};
+
+		var responsiveOptions = [
+		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+		    seriesBarDistance: 10,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value;
+		      }
+		    }
+		  }],
+		  ['screen and (max-width: 640px)', {
+		    seriesBarDistance: 5,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value[0];
+		      }
+		    }
+		  }]
+		];
+		
+		var data = {
+			  // A labels array that can contain any sort of values
+			  labels: response.labels,
+			  // Our series array that contains series objects or in this case series data arrays
+			  series: [
+			    response.values
+			  ]
+			};
+
+			// Create a new line chart object where as first parameter we pass in a selector
+			// that is resolving to our chart container element. The Second parameter
+			// is the actual data object.
+			new Chartist.Line('.ctt-chart', data, options);
+	});
+
+
+	$.get('/Protocol', function(response){
+		var info = {
+			labels: response.labels,
+			series: [response.values]
+		};
+
+		var options = {
+		  seriesBarDistance: 15
+		};
+
+		var responsiveOptions = [
+		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+		    seriesBarDistance: 10,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value;
+		      }
+		    }
+		  }],
+		  ['screen and (max-width: 640px)', {
+		    seriesBarDistance: 5,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value[0];
+		      }
+		    }
+		  }]
+		];
+		
+		var data = {
+			  // A labels array that can contain any sort of values
+			  labels: response.labels,
+			  // Our series array that contains series objects or in this case series data arrays
+			  series: [
+			    response.values
+			  ]
+			};
+
+			// Create a new line chart object where as first parameter we pass in a selector
+			// that is resolving to our chart container element. The Second parameter
+			// is the actual data object.
+			new Chartist.Line('.cttt-chart', data, options);
+	});
+
+	$.get('/Src_Port', function(response){
+		var info = {
+			labels: response.labels,
+			series: [response.values]
+		};
+
+		var options = {
+		  seriesBarDistance: 15
+		};
+
+		var responsiveOptions = [
+		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+		    seriesBarDistance: 10,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value;
+		      }
+		    }
+		  }],
+		  ['screen and (max-width: 640px)', {
+		    seriesBarDistance: 5,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value[0];
+		      }
+		    }
+		  }]
+		];
+		
+		var data = {
+			  // A labels array that can contain any sort of values
+			  labels: response.labels,
+			  // Our series array that contains series objects or in this case series data arrays
+			  series: [
+			    response.values
+			  ]
+			};
+
+			// Create a new line chart object where as first parameter we pass in a selector
+			// that is resolving to our chart container element. The Second parameter
+			// is the actual data object.
+			new Chartist.Line('.ctttt-chart', data, options);
+	});
+
+	$.get('/Dest_Port', function(response){
+		var info = {
+			labels: response.labels,
+			series: [response.values]
+		};
+
+		var options = {
+		  seriesBarDistance: 15
+		};
+
+		var responsiveOptions = [
+		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+		    seriesBarDistance: 10,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value;
+		      }
+		    }
+		  }],
+		  ['screen and (max-width: 640px)', {
+		    seriesBarDistance: 5,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+			return value[0];
+		      }
+		    }
+		  }]
+		];
+		
+		var data = {
+			  // A labels array that can contain any sort of values
+			  labels: response.labels,
+			  // Our series array that contains series objects or in this case series data arrays
+			  series: [
+			    response.values
+			  ]
+			};
+
+			// Create a new line chart object where as first parameter we pass in a selector
+			// that is resolving to our chart container element. The Second parameter
+			// is the actual data object.
+			new Chartist.Line('.cttttt-chart', data, options);
+	});
+
 
   </script>
  </body>
