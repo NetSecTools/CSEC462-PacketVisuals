@@ -131,11 +131,13 @@ def Dest_Portcount():
         cursor.execute("""Select Dest_Port, COUNT(Dest_Port) from store GROUP BY Dest_Port ORDER BY COUNT(Dest_Port) DESC LIMIT 10""")
         rows = cursor.fetchall()
         csv_writer.writerows(rows)
+
 def get_Labels_Dest_Port():
     with open("Dest_Port.csv") as f:
         a1 = [row["Dest_Port"] for row in DictReader(f)]
         f.close()
         return a1
+
 def get_occurances_Dest_Port():
     with open("Dest_Port.csv") as x:
         a2 = [row["COUNT(Dest_Port)"]for row in DictReader(x)]

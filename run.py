@@ -1,8 +1,5 @@
-import plotly
-from plotly.graph_objs import Scatter, Layout
 import plotly as py
 import plotly.graph_objs as go
-
 import vis
 
 src_IPlabels = vis.get_Labels_src_IP()
@@ -42,7 +39,7 @@ def Protocol():
         'data': [{'labels': Protocollabels,
                   'values': Protocolvalues,
                   'type': 'pie'}],
-        'layout': {'title': 'Source IP vs # of packets'}
+        'layout': {'title': 'Protocol usage by %'}
          }
 
     py.offline.plot(figC)
@@ -52,7 +49,7 @@ def src_Port():
         'data': [{'labels': Src_Portlabels,
                   'values': Src_Portvalues,
                   'type': 'pie'}],
-        'layout': {'title': 'Source IP vs # of packets'}
+        'layout': {'title': 'Source Port vs # of packets'}
          }
 
     py.offline.plot(figD)
@@ -62,15 +59,38 @@ def dest_Port():
         'data': [{'labels': Dest_Portlabels,
                   'values': Dest_Portvalues,
                   'type': 'pie'}],
-        'layout': {'title': 'Source IP vs # of packets'}
+        'layout': {'title': 'Destination Port vs # of packets'}
          }
 
-    py.offline.plot(figE)
+    py.offline.iplot(figE)
 
+def pretty_picture():
+    cont = True
+    while cont:
+        choice = str(raw_input("What Would You Like To See? Press ? to see choices or quit to exit: ")).lower()
 
-dest_Port()
+        if choice == '?':
+            print "Your Pie Chart Examples Include:\n" \
+                  "Source IP vs # of packets: Src IP \n" \
+                  "Destination IP vs # of packets: Dest IP \n" \
+                  "Source Port vs # of packets: Src Port\n" \
+                  "Destination Port vs # of packets: Dest Port\n" \
+                  "Protocol used: Protocol"
 
+        elif choice == "src ip":
+            src_IP()
+        elif choice == "dest ip":
+            dest_IP()
+        elif choice == "src port":
+            src_Port()
+        elif choice == "dest port":
+            dest_Port()
+        elif choice == "protocol":
+            Protocol()
+        elif choice == "quit":
+            print "Bye!"
+            cont=False
+        else:
+            print "Incorrect command"
 
-
-
-
+pretty_picture()
