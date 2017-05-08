@@ -1,6 +1,7 @@
 """
 Zachary Anthony
-Pandas framework visualization
+Collects information from the created .db file and converts it to a
+.csv file for use with visualization
 """
 
 import sqlite3
