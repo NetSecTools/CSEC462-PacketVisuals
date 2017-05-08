@@ -60,6 +60,8 @@ def collector():
                 proto = header_information[6]
                 # Version Information
                 vs = header_information[0]
+                #TTL
+                ttl= header_information[5]
                 # Header length
                 vs_x = vs >> 4
                 x = vs & 0xF
@@ -77,11 +79,19 @@ def collector():
 
                 src_PT = tcp_header[0]
                 dest_PT = tcp_header[1]
-                init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto)
+                sequence = tcp_header[2]
+                ack = tcp_header[3]
+                test = tcp_header[4]
+                test1 = tcp_header[5]
 
-                print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(
-                    src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(
-                    src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
+                print 'seq ' + str(sequence) + ' ack ' + str(ack)+ ' test ' + str(test)+ ' test1 ' + str(test1)
+
+
+                init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto, ttl)
+
+                #print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(
+                #   src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(
+                #   src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
 
     except KeyboardInterrupt:
         print "Working"

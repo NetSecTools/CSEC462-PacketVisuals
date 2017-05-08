@@ -144,8 +144,35 @@ def get_occurances_Dest_Port():
         x.close()
         return a2
 
+'''
+Ttl vs COUNT(ttl) --> csv
+'''
+def ttlcount():
+    conn = sqlite3.connect('store.db')
+    cursor = conn.cursor()
+    cursor.execute("""Select ttl, COUNT(ttl) from store GROUP BY ttl ORDER BY COUNT(ttl) DESC LIMIT 10""")
+    with open("ttl.csv", "wb") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([i[0] for i in cursor.description])
+        cursor.execute("""Select ttl, COUNT(ttl) from store GROUP BY ttl ORDER BY COUNT(ttl) DESC LIMIT 10""")
+        rows = cursor.fetchall()
+        csv_writer.writerows(rows)
+
+def get_Labels_ttl():
+    with open("ttl.csv") as f:
+        a1 = [row["ttl"] for row in DictReader(f)]
+        f.close()
+        return a1
+
+def get_occurances_ttl():
+    with open("ttl.csv") as x:
+        a2 = [row["COUNT(ttl)"]for row in DictReader(x)]
+        x.close()
+        return a2
+
 src_IPcount()
 dest_IPcount()
 Protocolcount()
 Src_Portcount()
 Dest_Portcount()
+ttlcount()

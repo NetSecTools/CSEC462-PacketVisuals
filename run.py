@@ -12,6 +12,8 @@ Src_Portlabels = vis.get_Labels_Src_Port()
 Src_Portvalues = vis.get_occurances_Src_Port()
 Dest_Portlabels = vis.get_Labels_Dest_Port()
 Dest_Portvalues = vis.get_occurances_Dest_Port()
+ttl_values = vis.get_occurances_ttl()
+ttl_labels = vis.get_Labels_ttl()
 
 
 def src_IP():
@@ -62,7 +64,17 @@ def dest_Port():
         'layout': {'title': 'Destination Port vs # of packets'}
          }
 
-    py.offline.iplot(figE)
+    py.offline.plot(figE)
+
+def ttl():
+    figF = {
+        'data': [{'labels': ttl_labels,
+                  'values': ttl_values,
+                  'type': 'pie'}],
+        'layout': {'title': 'TTL of packets'}
+         }
+
+    py.offline.plot(figF)
 
 def pretty_picture():
     cont = True
@@ -75,7 +87,9 @@ def pretty_picture():
                   "Destination IP vs # of packets: Dest IP \n" \
                   "Source Port vs # of packets: Src Port\n" \
                   "Destination Port vs # of packets: Dest Port\n" \
-                  "Protocol used: Protocol"
+                  "Protocol used: Protocol\n" \
+                  "Time to Live: ttl\n" \
+                  "To exit the program: Quit"
 
         elif choice == "src ip":
             src_IP()
@@ -87,6 +101,8 @@ def pretty_picture():
             dest_Port()
         elif choice == "protocol":
             Protocol()
+        elif choice == "ttl":
+            ttl()
         elif choice == "quit":
             print "Bye!"
             cont=False
