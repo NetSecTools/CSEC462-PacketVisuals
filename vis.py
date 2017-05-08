@@ -169,6 +169,32 @@ def get_occurances_ttl():
         a2 = [row["COUNT(ttl)"]for row in DictReader(x)]
         x.close()
         return a2
+'''
+Flags vs COUNT(Flags) -->
+'''
+def flagscount():
+    conn = sqlite3.connect('store.db')
+    cursor = conn.cursor()
+    cursor.execute("""Select flags, COUNT(flags) from store GROUP BY flags ORDER BY COUNT(flags) DESC LIMIT 10""")
+    with open("flags.csv", "wb") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([i[0] for i in cursor.description])
+        cursor.execute("""Select flags, COUNT(flags) from store GROUP BY flags ORDER BY COUNT(flags) DESC LIMIT 10""")
+        rows = cursor.fetchall()
+        csv_writer.writerows(rows)
+
+def get_Labels_flags():
+    with open("flags.csv") as f:
+        a1 = [row["flags"] for row in DictReader(f)]
+        f.close()
+        return a1
+
+def get_occurances_flags():
+    with open("flags.csv") as x:
+        a2 = [row["COUNT(flags)"]for row in DictReader(x)]
+        x.close()
+        return a2
+
 
 src_IPcount()
 dest_IPcount()
@@ -176,3 +202,4 @@ Protocolcount()
 Src_Portcount()
 Dest_Portcount()
 ttlcount()
+flagscount()

@@ -81,17 +81,14 @@ def collector():
                 dest_PT = tcp_header[1]
                 sequence = tcp_header[2]
                 ack = tcp_header[3]
-                test = tcp_header[4]
-                test1 = tcp_header[5]
+                flags = tcp_header[5]
+                test4 = tcp_header[8]
 
-                print 'seq ' + str(sequence) + ' ack ' + str(ack)+ ' test ' + str(test)+ ' test1 ' + str(test1)
+                init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto, ttl, flags)
 
-
-                init_db.use(count, src_Mac, dest_Mac, src_IP, src_PT, dest_IP, dest_PT, proto, ttl)
-
-                #print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(
-                #   src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(
-                #   src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
+                print str(count) + ' Protocol: ' + str(proto) + ' Source MAC: ' + str(
+                   src_Mac) + ' Destination MAC: ' + str(dest_Mac) + ' Source IP/Port: ' + str(src_IP) + '/' + str(
+                   src_PT) + ' Destination IP/Port: ' + str(dest_IP) + '/' + str(dest_PT)
 
     except KeyboardInterrupt:
         print "Working"

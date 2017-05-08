@@ -1,5 +1,4 @@
 import plotly as py
-import plotly.graph_objs as go
 import vis
 
 src_IPlabels = vis.get_Labels_src_IP()
@@ -14,6 +13,8 @@ Dest_Portlabels = vis.get_Labels_Dest_Port()
 Dest_Portvalues = vis.get_occurances_Dest_Port()
 ttl_values = vis.get_occurances_ttl()
 ttl_labels = vis.get_Labels_ttl()
+flags_labels = vis.get_Labels_flags()
+flags_values = vis.get_occurances_flags()
 
 
 def src_IP():
@@ -76,6 +77,16 @@ def ttl():
 
     py.offline.plot(figF)
 
+def flags():
+    figG = {
+        'data': [{'labels': flags_labels,
+                  'values': flags_values,
+                  'type': 'pie'}],
+        'layout': {'title': 'Flags set on packets'}
+         }
+
+    py.offline.plot(figG)
+
 def pretty_picture():
     cont = True
     while cont:
@@ -88,6 +99,7 @@ def pretty_picture():
                   "Source Port vs # of packets: Src Port\n" \
                   "Destination Port vs # of packets: Dest Port\n" \
                   "Protocol used: Protocol\n" \
+                  "Flags Set in TCP Packets: flags\n" \
                   "Time to Live: ttl\n" \
                   "To exit the program: Quit"
 
@@ -103,6 +115,8 @@ def pretty_picture():
             Protocol()
         elif choice == "ttl":
             ttl()
+        elif choice == "flags":
+            flags()
         elif choice == "quit":
             print "Bye!"
             cont=False
