@@ -9,14 +9,19 @@ To start using this project, simply download the 4 .py files and store them in t
 2. Python 2
 3. Plotly Plugin installed
 
-### Installing
-Simply run the main.py file with the other 3 supporting py files present.
+### Installing & Running
+Simply run the [Main.py](https://github.com/zda2119/CSEC462-PacketVisuals/blob/master/main.py) file with the other 3 supporting py files present.
+
+Reference the HowTo document for easy instructions to running this project.
 
 ## Built With
 * [Plotly](https://plot.ly/python/) - The Python visualization library used
+* [Python 2](https://www.python.org/download/releases/2.7.2/) - Python 2 Release
+
+Developed using the latest version of [Pycharm](https://www.jetbrains.com/pycharm/download/#section=windows) on [Ubuntu 16.04](http://releases.ubuntu.com/16.04/)
 
 ## Authors
 Zach Anthony - zda2119@rit.edu - Rochester Institute of Technology - Computing Security (BS) 2018
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
