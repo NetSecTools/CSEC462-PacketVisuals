@@ -4,7 +4,7 @@ This project will focus on sniffing packets and utilizing them in a particular f
 To start using this project, simply download the 4 .py files and store them in the same directory. Running the MAIN.py file will operate the program. Simply follow the on screen instructions in order to operate.
 
 ### Prerequisites
-3 Prerequisties
+3 Prerequisties:
 1. Linux distribution with root privileges
 2. Python 2
 3. Plotly Plugin installed
@@ -24,4 +24,4 @@ Developed using the latest version of [Pycharm](https://www.jetbrains.com/pychar
 Zach Anthony - zda2119@rit.edu - Rochester Institute of Technology - Computing Security (BS) 2018
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](https://github.com/zda2119/CSEC462-PacketVisuals/blob/master/License.txt) file for details
