@@ -1,0 +1,30 @@
+How to use PacketVisuals
+
+Prerequisites:
+The first thing that needs to be done is the installation of all the dependencies. These dependencies can be found in the Readme.md or see below.
+1.	A Linux distribution as the OS
+2.	Python 2 - https://www.python.org/download/releases/2.7.2/
+3.	Plotly library - https://plot.ly/python/
+
+Steps to run:
+
+Overview:
+This section will walk you through how to set up and run this program. It will talk about how it needs to be saved, the files it will produce, as well as how to operate the program.
+
+1.	Download all the files located in the GitHub Repository. This is located at https://github.com/zda2119/CSEC462-PacketVisuals. You can use the following command in Linux.
+“Git clone https://github.com/zda2119/CSEC462-PacketVisuals”
+
+2.	Make sure all the files are in the same directory. This should include main.py, init_db.py, vis.py and run.py. The GitHub repo will also contain a readme.md, liscence.txt, and this document.
+
+3.	Next simply bring up a terminal, navigate to the newly created directory and issue the following command
+“Sudo python2 main.py”
+
+4.	The network capture should begin and you should see packets within the CLI. After you have captured sufficient network traffic, issue the key command CTRL+C to stop the capture.
+
+5.	After pressing CTRL+C, it will print a line that says “Working” and then display a prompt that says "What Would You like to See? Press ? to see choices or quit to exit:".
+
+6.	Once you receive this prompt, simply enter the pie chart you wish to view or press “?” to view your available options.
+ 
+7.	Once you are finished viewing the pie charts, type ‘quit’ to exit the program.
+
+end
